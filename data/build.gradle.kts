@@ -5,4 +5,7 @@ plugins {
 dependencies {
 
     implementation(project(":commons"))
+
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
 }
