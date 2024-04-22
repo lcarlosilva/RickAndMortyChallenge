@@ -4,6 +4,14 @@ plugins {
 }
 
 dependencies {
+
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.converter)
+
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
 }
