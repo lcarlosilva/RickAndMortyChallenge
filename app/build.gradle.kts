@@ -52,6 +52,7 @@ android {
 dependencies {
 
     implementation(project(":data"))
+    implementation(project(":commons"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
