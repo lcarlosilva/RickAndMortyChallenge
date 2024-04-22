@@ -1,8 +1,12 @@
 package br.com.luiz.rickandmortychallenge.di
 
+import br.com.luiz.commons.utils.BuildConfigProvider
+import br.com.luiz.rickandmortychallenge.utils.AppBuildConfigProvider
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 fun appModule(): Module {
-    return module {}
+    return module {
+        single<BuildConfigProvider> { AppBuildConfigProvider() }
+    }
 }

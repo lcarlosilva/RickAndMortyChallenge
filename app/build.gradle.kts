@@ -20,12 +20,43 @@ android {
         }
     }
 
+    val fullApplicationId = android.defaultConfig.applicationId
+    val appName = fullApplicationId?.substringAfterLast(".")
+
     buildTypes {
-        release {
+
+        debug {
             isMinifyEnabled = false
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+            buildConfigField(
+                "String",
+                "API_RICK_MORTY",
+                "\"https://rickandmortyapi.com/api/\"",
+            )
+            buildConfigField(
+                "String",
+                "NAME_APP_FORMATTED",
+                "\"${appName}_${android.defaultConfig.versionName}-DBG\"",
+            )
+        }
+
+        release {
+            isMinifyEnabled = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
+            )
+            buildConfigField(
+                "String",
+                "API_RICK_MORTY",
+                "\"https://rickandmortyapi.com/api/\"",
+            )
+            buildConfigField(
+                "String",
+                "NAME_APP_FORMATTED",
+                "\"${android.defaultConfig.applicationId}_${android.defaultConfig.versionName}\"",
             )
         }
     }
@@ -37,6 +68,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
