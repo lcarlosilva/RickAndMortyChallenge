@@ -14,4 +14,7 @@ dependencies {
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
+
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit)
 }
