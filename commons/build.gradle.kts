@@ -15,6 +15,9 @@ dependencies {
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
 
+    implementation(libs.io.ktor.client.core)
+    implementation(libs.io.ktor.http)
+
     testImplementation(libs.mockk)
     testImplementation(libs.junit)
 }
