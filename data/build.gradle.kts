@@ -23,4 +23,9 @@ dependencies {
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
+
+    implementation(libs.kotlinx.serialization.converter)
+
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
 }
