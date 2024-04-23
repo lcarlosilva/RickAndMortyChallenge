@@ -101,6 +101,10 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
+    implementation(libs.paging)
+    implementation(libs.paging.compose)
+    implementation(libs.androidx.paging.common.ktx)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
