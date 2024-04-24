@@ -22,6 +22,7 @@ android {
 
     val fullApplicationId = android.defaultConfig.applicationId
     val appName = fullApplicationId?.substringAfterLast(".")
+    val url = "\"https://rickandmortyapi.com/api/\""
 
     buildTypes {
 
@@ -32,7 +33,7 @@ android {
             buildConfigField(
                 "String",
                 "API_RICK_MORTY",
-                "\"https://rickandmortyapi.com/api/\"",
+                url,
             )
             buildConfigField(
                 "String",
@@ -51,7 +52,7 @@ android {
             buildConfigField(
                 "String",
                 "API_RICK_MORTY",
-                "\"https://rickandmortyapi.com/api/\"",
+                url,
             )
             buildConfigField(
                 "String",
