@@ -1,4 +1,4 @@
-package br.com.luiz.rickandmortychallenge
+package br.com.luiz.rickandmortychallenge.ui.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
