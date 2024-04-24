@@ -107,6 +107,9 @@ dependencies {
     implementation(libs.androidx.paging.common.ktx)
 
     implementation(libs.io.coil.kt.compose)
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
 

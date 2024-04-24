@@ -1,5 +1,8 @@
 package br.com.luiz.domain.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Character(
     var id: Int,
     var name: String,
