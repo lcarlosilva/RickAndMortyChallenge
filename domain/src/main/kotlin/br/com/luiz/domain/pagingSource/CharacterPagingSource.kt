@@ -1,5 +1,6 @@
 package br.com.luiz.domain.pagingSource
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import br.com.luiz.commons.utils.extensions.getPageFromUrl
@@ -27,6 +28,7 @@ class CharacterPagingSource : KoinComponent, PagingSource<Int, Character>() {
                 nextKey = response.next.getPageFromUrl(PAGE),
             )
         } catch (e: Exception) {
+            Log.d("CharacterPagingSource", "load: ${e.message}")
             LoadResult.Error(e)
         }
     }

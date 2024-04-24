@@ -1,5 +1,6 @@
 package br.com.luiz.data.repository
 
+import android.util.Log
 import br.com.luiz.data.api.RickAndMortyService
 import br.com.luiz.data.mapper.toEntity
 import br.com.luiz.domain.model.Character
@@ -22,6 +23,7 @@ class RickAndMortyRepositoryImpl(
                 )
             }
         } catch (e: Exception) {
+            Log.d("RickAndMortyRepository", "getCharactersList: ${e.message}")
             Response(0, 0, null, null, emptyList())
         }
     }

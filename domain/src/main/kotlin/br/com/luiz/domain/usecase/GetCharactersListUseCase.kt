@@ -1,5 +1,7 @@
 package br.com.luiz.domain.usecase
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -17,12 +19,18 @@ interface GetCharactersListUseCase {
 }
 
 class GetCharactersListUseCaseImpl : GetCharactersListUseCase {
+    @SuppressLint("LongLogTag")
     override suspend fun getCharactersList(): Flow<PagingData<List<Character>>> =
-        Pager(config = PagingConfig(pageSize = PAGE_SIZE_DEFAULT)) { CharacterPagingSource() }
-            .flow
-            .map { value: PagingData<Character> ->
+        try {
+            Pager(config = PagingConfig(pageSize = PAGE_SIZE_DEFAULT)) {
+                CharacterPagingSource()
+            }.flow.map { value: PagingData<Character> ->
                 value.map { character: Character ->
                     character.toCharacterList()
                 }
             }
+        } catch (e: Exception) {
+            Log.d("GetCharactersListUseCase", "getCharactersList: ${e.message}")
+            throw e
+        }
 }
