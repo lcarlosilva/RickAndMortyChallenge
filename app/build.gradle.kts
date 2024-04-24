@@ -105,6 +105,8 @@ dependencies {
     implementation(libs.paging.compose)
     implementation(libs.androidx.paging.common.ktx)
 
+    implementation(libs.io.coil.kt.compose)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
