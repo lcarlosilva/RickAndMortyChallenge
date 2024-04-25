@@ -19,6 +19,9 @@ class RickAndMortyRepositoryImpl(
                     status = it.status,
                     species = it.species,
                     type = it.type,
+                    gender = it.gender,
+                    origin = it.origin.toEntity(),
+                    location = it.location.toEntity(),
                     image = it.image,
                 )
             }

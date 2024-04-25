@@ -10,6 +10,9 @@ fun Character.toCharacterList() =
             status = status,
             species = species,
             type = type,
+            gender = gender,
+            origin = origin,
+            location = location,
             image = image,
         ),
     )
