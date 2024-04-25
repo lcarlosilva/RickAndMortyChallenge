@@ -221,7 +221,7 @@ private fun footer(
 }
 
 @Composable
-@Preview()
+@Preview
 fun detailsCharacterBottomSheetPreview() {
     detailsCharacterBottomSheet(
         item =
@@ -230,7 +230,7 @@ fun detailsCharacterBottomSheetPreview() {
                 name = "Rick",
                 status = "Alive",
                 species = "Human",
-                type = "",
+                type = "Scientist",
                 gender = "Male",
                 origin = Origin(name = "Earth"),
                 location = Location(name = "Citadel of Ricks"),
