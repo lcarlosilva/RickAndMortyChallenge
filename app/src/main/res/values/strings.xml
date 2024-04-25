@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Rick And Morty</string>
+    <string name="lbl_content_description_photo_character">Photo Character %1$s</string>
+    <string name="lbl_species">Species</string>
+    <string name="lbl_gender">Gender</string>
+    <string name="lbl_origin">Origin</string>
+    <string name="lbl_location">Location</string>
+    <string name="lbl_btn_ok">OK</string>
 </resources>

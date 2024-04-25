@@ -1,7 +1,10 @@
 package br.com.luiz.rickandmortychallenge.ui.view.compose
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -20,13 +24,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.luiz.domain.model.Character
+import br.com.luiz.rickandmortychallenge.R
 import br.com.luiz.rickandmortychallenge.navigation.Routes.DETAILS_SCREEN
 import br.com.luiz.rickandmortychallenge.ui.viewmodel.CharactersListViewModel
+import br.com.luiz.rickandmortychallenge.utils.colorStatus
 import coil.compose.rememberAsyncImagePainter
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -65,10 +72,10 @@ fun characterItem(
 ) {
     val context = LocalContext.current
     Card(
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(6.dp),
         modifier =
             Modifier
-                .padding(8.dp)
+                .padding(6.dp)
                 .fillMaxWidth()
                 .clickable {
                     onCharClicked.invoke(NavHostController(context))
@@ -76,21 +83,42 @@ fun characterItem(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(4.dp),
         ) {
             Image(
                 painter = rememberAsyncImagePainter(character.image),
-                contentDescription = null,
+                contentDescription =
+                    stringResource(
+                        R.string.lbl_content_description_photo_character,
+                        character.name,
+                    ),
                 modifier =
                     Modifier
-                        .size(64.dp)
-                        .clip(CircleShape),
+                        .size(66.dp)
+                        .clip(CutCornerShape(2.dp)),
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            Column {
+            Spacer(modifier = Modifier.width(6.dp))
+            Column(
+                modifier = Modifier.padding(start = 4.dp),
+            ) {
                 Text(text = character.name, style = MaterialTheme.typography.headlineMedium)
                 Text(text = character.species, style = MaterialTheme.typography.bodyMedium)
-                Text(text = character.status, style = MaterialTheme.typography.bodySmall)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    val color = colorStatus(character)
+                    Box(
+                        modifier =
+                            Modifier
+                                .size(16.dp)
+                                .padding(4.dp)
+                                .clip(CircleShape)
+                                .background(color),
+                    )
+                    Text(text = character.status, style = MaterialTheme.typography.bodySmall)
+                }
             }
         }
     }
