@@ -11,6 +11,7 @@ import br.com.luiz.rickandmortychallenge.navigation.Routes.DETAILS_SCREEN
 import br.com.luiz.rickandmortychallenge.navigation.Routes.LIST_SCREEN
 import br.com.luiz.rickandmortychallenge.ui.view.compose.CharacterListScreen
 import br.com.luiz.rickandmortychallenge.ui.view.compose.detailsCharacterBottomSheet
+import br.com.luiz.rickandmortychallenge.ui.view.compose.filterCharacterScreen
 import kotlinx.serialization.json.Json
 import java.net.URLDecoder
 
@@ -25,15 +26,25 @@ fun NavGraph(startDestination: String = LIST_SCREEN) {
             CharacterListScreen(navController = navController)
         }
 
-        composable(
-            route = "$DETAILS_SCREEN/{item}",
-            arguments = listOf(navArgument("item") { type = NavType.StringType }),
-        ) { backStackEntry ->
-            val item = URLDecoder.decode(backStackEntry.arguments?.getString("item"), "utf-8")
-            val character = Json.decodeFromString<Character>(item!!)
-            detailsCharacterBottomSheet(item = character) {
-                navController.popBackStack()
-            }
-        }
-    }
+		composable(
+			route = "$DETAILS_SCREEN/{item}",
+			arguments = listOf(navArgument("item") { type = NavType.StringType }),
+		) { backStackEntry ->
+			val item = URLDecoder.decode(backStackEntry.arguments?.getString("item"), "utf-8")
+			val character = Json.decodeFromString<Character>(item!!)
+			detailsCharacterBottomSheet(item = character) {
+				navController.popBackStack()
+			}
+		}
+
+		composable(
+			route = Routes.FILTER_SCREEN,
+		) {
+			filterCharacterScreen(navigate = { id ->
+				navController.navigate("$DETAILS_SCREEN/$id")
+			}) {
+				navController.popBackStack()
+			}
+		}
+	}
 }

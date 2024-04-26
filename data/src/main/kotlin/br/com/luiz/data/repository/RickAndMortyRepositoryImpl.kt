@@ -10,9 +10,9 @@ import br.com.luiz.domain.repository.RickAndMortyRepository
 class RickAndMortyRepositoryImpl(
     private val service: RickAndMortyService,
 ) : RickAndMortyRepository {
-    override suspend fun getCharactersList(page: Int): Response<Character> {
+    override suspend fun getCharactersList(page: Int, name: String?): Response<Character> {
         return try {
-            service.getCharactersList(page).toEntity {
+            service.getCharactersList(page, name).toEntity {
                 Character(
                     id = it.id,
                     name = it.name,

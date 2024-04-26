@@ -15,15 +15,15 @@ import kotlinx.coroutines.flow.map
 private const val PAGE_SIZE_DEFAULT = 10
 
 interface GetCharactersListUseCase {
-    suspend fun getCharactersList(): Flow<PagingData<List<Character>>>
+    suspend fun getCharactersList(name: String? = null): Flow<PagingData<List<Character>>>
 }
 
 class GetCharactersListUseCaseImpl : GetCharactersListUseCase {
     @SuppressLint("LongLogTag")
-    override suspend fun getCharactersList(): Flow<PagingData<List<Character>>> =
+    override suspend fun getCharactersList(name: String?): Flow<PagingData<List<Character>>> =
         try {
             Pager(config = PagingConfig(pageSize = PAGE_SIZE_DEFAULT)) {
-                CharacterPagingSource()
+                CharacterPagingSource(name)
             }.flow.map { value: PagingData<Character> ->
                 value.map { character: Character ->
                     character.toCharacterList()

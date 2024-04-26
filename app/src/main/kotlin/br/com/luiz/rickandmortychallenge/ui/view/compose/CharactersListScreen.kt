@@ -37,6 +37,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.luiz.domain.model.Character
 import br.com.luiz.rickandmortychallenge.R
 import br.com.luiz.rickandmortychallenge.navigation.Routes.DETAILS_SCREEN
+import br.com.luiz.rickandmortychallenge.navigation.Routes.FILTER_SCREEN
 import br.com.luiz.rickandmortychallenge.ui.viewmodel.CharactersListViewModel
 import br.com.luiz.rickandmortychallenge.utils.colorStatus
 import coil.compose.rememberAsyncImagePainter
@@ -58,7 +59,9 @@ fun CharacterListScreen(navController: NavHostController) {
         characterListScreen(characters = listCharacters, navController)
         FloatingActionButton(
             modifier = Modifier.padding(20.dp),
-            onClick = { /* TODO: ADD NAVIGATION TO FILTER SCREEN */ },
+            onClick = {
+                navController.navigate(FILTER_SCREEN)
+            },
         ) {
             Icon(Icons.Filled.Search, contentDescription = "Search")
         }

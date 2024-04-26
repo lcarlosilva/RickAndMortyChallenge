@@ -31,6 +31,10 @@ slf4j = "2.0.7"
 foundationAndroid = "1.6.4"
 kotlinter = "4.3.0"
 navigationCompose = "2.7.7"
+paletteKtx = "1.0.0"
+landscapistCoil = "1.5.2"
+constraintLayoutCompose = "1.0.0"
+accompanist = "0.24.10-beta"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -75,6 +79,10 @@ paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", v
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "refrofit" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-palette-ktx = { group = "androidx.palette", name = "palette-ktx", version.ref = "paletteKtx" }
+landscapist-coil = { group = "com.github.skydoves", name = "landscapist-coil", version.ref = "landscapistCoil" }
+androidx-compose-constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintLayoutCompose" }
+accompanist-placeholder-material = {module = "com.google.accompanist:accompanist-placeholder-material",version.ref ="accompanist"}
 
 
 [plugins]
