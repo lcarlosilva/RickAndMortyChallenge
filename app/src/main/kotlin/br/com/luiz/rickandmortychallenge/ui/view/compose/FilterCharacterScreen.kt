@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
+import br.com.luiz.commons.utils.extensions.emptyString
 import br.com.luiz.rickandmortychallenge.R
 import br.com.luiz.rickandmortychallenge.ui.components.CharactersListColumn
 import br.com.luiz.rickandmortychallenge.ui.components.SearchBar
@@ -24,8 +25,8 @@ fun filterCharacterScreen(navController: NavHostController, navigateBack: () -> 
 	val searchString = viewModel.searchString.collectAsState().value
 
 	LaunchedEffect(key1 = searchString) {
-		if (searchString != "") {
-			viewModel.searchCharacterbyName(searchString)
+		if (searchString != emptyString()) {
+			viewModel.searchCharacterByName(searchString)
 		}
 	}
 

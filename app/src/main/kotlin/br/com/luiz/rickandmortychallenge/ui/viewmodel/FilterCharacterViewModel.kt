@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import br.com.luiz.commons.utils.extensions.emptyString
 import br.com.luiz.domain.usecase.GetCharactersListUseCase
 import br.com.luiz.rickandmortychallenge.ui.view.state.CharacterListState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,34 +23,29 @@ class FilterCharacterViewModel(
 	private var _searchResult = mutableStateOf(CharacterListState())
 	var searchResult = _searchResult
 
-	private val _searchString = MutableStateFlow("")
+	private val _searchString = MutableStateFlow(emptyString())
 	val searchString = _searchString.asStateFlow()
 
 	private var searchJob: Job? = null
 
 	@ExperimentalCoroutinesApi
 	val searchResponse = searchString.filter {
-		it != ""
+		it != emptyString()
 	}.flatMapLatest { searchName ->
 		getCharactersListUseCase.getCharactersList(searchName).cachedIn(viewModelScope)
 	}
 
-	fun searchCharacterbyName(searchString: String) {
+	fun searchCharacterByName(searchString: String) {
 		searchJob?.cancel()
 		searchJob = viewModelScope.launch {
-			if(searchString.length>3) delay(500)
-
-
+			if (searchString.length > 3) delay(500)
 			val response = getCharactersListUseCase.getCharactersList(searchString)
-			_searchResult.value = CharacterListState(
-				dataList = response
-			)
-
+			_searchResult.value = CharacterListState(dataList = response)
 		}
 	}
 
 	fun searchCharacter(name: String) {
-		if (name == "") {
+		if (name == emptyString()) {
 			_searchResult.value = CharacterListState(
 				dataList = null
 			)

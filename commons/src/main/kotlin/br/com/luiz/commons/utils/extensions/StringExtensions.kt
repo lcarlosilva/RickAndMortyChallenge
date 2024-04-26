@@ -11,3 +11,5 @@ fun String?.getPageFromUrl(param: String): Int? {
         null
     }
 }
+
+fun emptyString() = ""

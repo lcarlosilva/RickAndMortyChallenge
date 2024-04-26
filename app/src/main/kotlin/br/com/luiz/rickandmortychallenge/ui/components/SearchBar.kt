@@ -29,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import br.com.luiz.commons.utils.extensions.emptyString
 import br.com.luiz.rickandmortychallenge.R
 
 @Composable
@@ -68,7 +69,7 @@ fun SearchBar(
 				trailingIcon = {
 					if (value.isNotBlank()) {
 						IconButton(onClick = {
-							onValueChange("")
+							onValueChange(emptyString())
 						}) {
 							Icon(
 								imageVector = Icons.Default.Clear,
