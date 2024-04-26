@@ -10,7 +10,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -25,38 +25,37 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-
+import br.com.luiz.rickandmortychallenge.R
 
 @Composable
-fun CustomSearchBar(
+fun SearchBar(
 	value: String,
 	placeholder: String,
 	navigateUp: () -> Unit,
 	onValueChange: (String) -> Unit
 ) {
 	val focusManager = LocalFocusManager.current
-
 	val requester = remember { FocusRequester() }
-	Column {
 
+	Column {
 		Row(
 			modifier = Modifier.fillMaxWidth(),
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			IconButton(onClick = { navigateUp() }) {
-				Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+				Icon(
+					imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+					contentDescription = stringResource(R.string.lbl_content_description_back_screen)
+				)
 			}
 			TextField(
 				value = value,
-				onValueChange = { name ->
-					onValueChange(name)
-				},
-				placeholder = {
-					Text(text = placeholder)
-				},
+				onValueChange = { name -> onValueChange(name) },
+				placeholder = { Text(text = placeholder) },
 				colors = TextFieldDefaults.colors(
 					focusedIndicatorColor = Color.Transparent,
 					unfocusedIndicatorColor = Color.Transparent,
@@ -73,7 +72,7 @@ fun CustomSearchBar(
 						}) {
 							Icon(
 								imageVector = Icons.Default.Clear,
-								contentDescription = "clear Search",
+								contentDescription = stringResource(R.string.lbl_content_description_clear_search),
 								modifier = Modifier
 									.padding(end = 8.dp)
 									.size(20.dp)
@@ -86,17 +85,15 @@ fun CustomSearchBar(
 					imeAction = ImeAction.Done
 				),
 				keyboardActions = KeyboardActions(
-					onDone = {
-						focusManager.clearFocus()
-					}
+					onDone = { focusManager.clearFocus() }
 				)
 			)
 		}
-
-		Divider(modifier = Modifier.fillMaxWidth())
+		HorizontalDivider(
+			modifier = Modifier.fillMaxWidth(),
+			thickness = 1.dp,
+			color = Color.DarkGray
+		)
 	}
-	SideEffect {
-
-		requester.requestFocus()
-	}
+	SideEffect { requester.requestFocus() }
 }

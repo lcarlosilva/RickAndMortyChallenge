@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import br.com.luiz.domain.model.Character
 import br.com.luiz.rickandmortychallenge.navigation.Routes.DETAILS_SCREEN
+import br.com.luiz.rickandmortychallenge.navigation.Routes.FILTER_SCREEN
 import br.com.luiz.rickandmortychallenge.navigation.Routes.LIST_SCREEN
 import br.com.luiz.rickandmortychallenge.ui.view.compose.CharacterListScreen
 import br.com.luiz.rickandmortychallenge.ui.view.compose.detailsCharacterBottomSheet
@@ -15,16 +16,15 @@ import br.com.luiz.rickandmortychallenge.ui.view.compose.filterCharacterScreen
 import kotlinx.serialization.json.Json
 import java.net.URLDecoder
 
-@Suppress("ktlint:standard:function-naming")
 @Composable
 fun NavGraph(startDestination: String = LIST_SCREEN) {
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = startDestination) {
-        composable(
-            route = LIST_SCREEN,
-        ) {
-            CharacterListScreen(navController = navController)
-        }
+	val navController = rememberNavController()
+	NavHost(navController = navController, startDestination = startDestination) {
+		composable(
+			route = LIST_SCREEN,
+		) {
+			CharacterListScreen(navController = navController)
+		}
 
 		composable(
 			route = "$DETAILS_SCREEN/{item}",
@@ -38,11 +38,9 @@ fun NavGraph(startDestination: String = LIST_SCREEN) {
 		}
 
 		composable(
-			route = Routes.FILTER_SCREEN,
+			route = FILTER_SCREEN,
 		) {
-			filterCharacterScreen(navigate = { id ->
-				navController.navigate("$DETAILS_SCREEN/$id")
-			}) {
+			filterCharacterScreen(navController = navController) {
 				navController.popBackStack()
 			}
 		}

@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">Rick And Morty</string>
+
     <string name="lbl_content_description_photo_character">Photo Character %1$s</string>
+    <string name="lbl_content_description_clear_search">Clear Search</string>
+    <string name="lbl_content_description_back_screen">Back Screen</string>
+
     <string name="lbl_species">Species</string>
     <string name="lbl_gender">Gender</string>
     <string name="lbl_origin">Origin</string>
     <string name="lbl_location">Location</string>
     <string name="lbl_btn_ok">OK</string>
+    <string name="lbl_status">Status</string>
+
+    <string name="msg_error_character_not_found">Character not Found</string>
+    <string name="msg_info_try_again">Try Again</string>
+    <string name="txt_placeholder_search_characters">Search Characters</string>
 </resources>

@@ -16,10 +16,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import br.com.luiz.domain.model.Character
+import br.com.luiz.rickandmortychallenge.R
+import br.com.luiz.rickandmortychallenge.navigation.Routes
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.net.URLEncoder
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -27,7 +34,7 @@ fun CharactersListColumn(
 	modifier: Modifier = Modifier,
 	items: LazyPagingItems<List<Character>>,
 	listState: LazyListState = rememberLazyListState(),
-	navigate: (Int) -> Unit = {}
+	navController: NavHostController
 ) {
 	LazyColumn(
 		state = listState,
@@ -35,11 +42,12 @@ fun CharactersListColumn(
 	) {
 		items(items.itemCount) { index ->
 			items[index]?.forEach { character ->
-				CharacterUI(
+				CharacterItem(
 					character = character,
 					modifier = Modifier.animateItemPlacement()
-				) { id ->
-					navigate(id)
+				) {
+					val characterJson = URLEncoder.encode(Json.encodeToString(character), "utf-8")
+					navController.navigate("${Routes.DETAILS_SCREEN}/$characterJson")
 				}
 			}
 		}
@@ -50,10 +58,7 @@ fun CharactersListColumn(
 						Box(
 							modifier = Modifier
 								.fillMaxSize()
-								.padding(
-									top = 50.dp,
-									bottom = 50.dp
-								),
+								.padding(vertical = 50.dp),
 							contentAlignment = Alignment.Center
 						) {
 							CircularProgressIndicator(modifier = Modifier.height(30.dp))
@@ -88,9 +93,8 @@ fun CharactersListColumn(
 								horizontalAlignment = Alignment.CenterHorizontally
 							) {
 								val errorText =
-									if (errorMessage.error.localizedMessage!!
-											.contains("404")
-									) "Character not Found"
+									if (errorMessage.error.localizedMessage!!.contains("404"))
+										stringResource(R.string.msg_error_character_not_found)
 									else
 										errorMessage.error.localizedMessage
 								Text(errorText)
@@ -101,7 +105,6 @@ fun CharactersListColumn(
 
 				loadState.append is LoadState.Error -> {
 					val errorMessage = items.loadState.append as LoadState.Error
-
 					item {
 						Box(
 							modifier = Modifier
@@ -115,7 +118,7 @@ fun CharactersListColumn(
 							) {
 								Text(text = errorMessage.error.localizedMessage!!)
 								Button(onClick = { retry() }) {
-									Text(text = "Try Again")
+									Text(text = stringResource(R.string.msg_info_try_again))
 								}
 							}
 						}
