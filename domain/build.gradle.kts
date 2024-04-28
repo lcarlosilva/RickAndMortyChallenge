@@ -35,4 +35,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
 }

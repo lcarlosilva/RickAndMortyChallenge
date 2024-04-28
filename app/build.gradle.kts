@@ -114,15 +114,24 @@ dependencies {
     implementation(libs.androidx.palette.ktx)
     implementation(libs.androidx.compose.constraint.layout)
 
-    implementation(libs.accompanist.placeholder.material)
+	implementation(libs.accompanist.placeholder.material)
+	implementation(libs.androidx.junit.ktx)
+	implementation(libs.androidx.navigation.testing)
 
-    testImplementation(libs.junit)
+	testImplementation(libs.junit)
+	testImplementation(libs.mockk)
+	testImplementation(libs.androidx.core.testing)
+	testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
 
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+	androidTestImplementation(libs.androidx.junit)
+	androidTestImplementation(libs.androidx.espresso.core)
+	androidTestImplementation(platform(libs.androidx.compose.bom))
+	androidTestImplementation(libs.androidx.ui.test.junit4)
+	androidTestImplementation(libs.androidx.core.testing)
+	androidTestImplementation(libs.ui.test.junit4)
+	androidTestImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
 
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+	debugImplementation(libs.ui.test.manifest)
+	debugImplementation(libs.androidx.ui.tooling)
+	debugImplementation(libs.androidx.ui.test.manifest)
 }

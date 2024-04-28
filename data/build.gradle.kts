@@ -15,6 +15,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -29,4 +33,13 @@ dependencies {
 
     implementation(libs.okhttp)
     implementation(libs.retrofit)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.org.jetbrains.kotlinx.coroutines.test)
+    testImplementation(libs.org.junit.jupiter.api)
+    testImplementation(libs.org.mockito.core)
+    testImplementation(libs.io.kotlintest)
+
+
 }
