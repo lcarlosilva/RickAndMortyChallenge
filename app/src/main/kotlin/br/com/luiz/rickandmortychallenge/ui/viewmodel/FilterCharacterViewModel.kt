@@ -28,13 +28,6 @@ class FilterCharacterViewModel(
 
 	private var searchJob: Job? = null
 
-	@ExperimentalCoroutinesApi
-	val searchResponse = searchString.filter {
-		it != emptyString()
-	}.flatMapLatest { searchName ->
-		getCharactersListUseCase.getCharactersList(searchName).cachedIn(viewModelScope)
-	}
-
 	fun searchCharacterByName(searchString: String) {
 		searchJob?.cancel()
 		searchJob = viewModelScope.launch {
