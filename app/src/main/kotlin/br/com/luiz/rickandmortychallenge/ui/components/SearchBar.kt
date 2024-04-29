@@ -37,7 +37,8 @@ fun SearchBar(
 	value: String,
 	placeholder: String,
 	navigateUp: () -> Unit,
-	onValueChange: (String) -> Unit
+	onValueChange: (String) -> Unit,
+	onValueSelected: (CharacterStatusData) -> Unit
 ) {
 	val focusManager = LocalFocusManager.current
 	val requester = remember { FocusRequester() }
@@ -90,6 +91,19 @@ fun SearchBar(
 				)
 			)
 		}
+		HorizontalDivider(
+			modifier = Modifier.fillMaxWidth(),
+			thickness = 1.dp,
+			color = Color.DarkGray
+		)
+		Filter(
+			listOf(
+				CharacterStatusData(status = CharacterStatusData.StatusFilter.ALIVE),
+				CharacterStatusData(status = CharacterStatusData.StatusFilter.DEAD),
+				CharacterStatusData(status = CharacterStatusData.StatusFilter.UNKNOWN)
+			),
+			onStatusSelected = { characterStatusData -> onValueSelected(characterStatusData) }
+		)
 		HorizontalDivider(
 			modifier = Modifier.fillMaxWidth(),
 			thickness = 1.dp,

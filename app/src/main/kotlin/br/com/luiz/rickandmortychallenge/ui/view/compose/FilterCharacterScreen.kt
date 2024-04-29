@@ -38,6 +38,9 @@ fun filterCharacterScreen(navController: NavHostController, navigateBack: () -> 
 				navigateUp = navigateBack,
 				onValueChange = { name ->
 					viewModel.searchCharacter(name)
+				},
+				onValueSelected = { characterStatusData ->
+					viewModel.searchCharacterByName(status = characterStatusData.status.name)
 				}
 			)
 		}
