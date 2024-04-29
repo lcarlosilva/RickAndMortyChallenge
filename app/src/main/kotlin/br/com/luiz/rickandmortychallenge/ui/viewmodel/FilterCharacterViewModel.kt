@@ -28,11 +28,13 @@ class FilterCharacterViewModel(
 
 	private var searchJob: Job? = null
 
-	fun searchCharacterByName(searchString: String) {
+	fun searchCharacterByName(searchString: String? = null, status: String? = null) {
 		searchJob?.cancel()
 		searchJob = viewModelScope.launch {
-			if (searchString.length > 3) delay(500)
-			val response = getCharactersListUseCase.getCharactersList(searchString)
+			if (searchString != null) {
+				if (searchString.length > 3) delay(500)
+			}
+			val response = getCharactersListUseCase.getCharactersList(searchString, status)
 			_searchResult.value = CharacterListState(dataList = response)
 		}
 	}
