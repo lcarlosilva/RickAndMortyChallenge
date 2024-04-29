@@ -51,7 +51,7 @@ class RickAndMortyRepositoryImplTest {
 				)
 			)
 		)
-		coEvery { service.getCharactersList(any(), any()) } returns expectedResponse
+		coEvery { service.getCharactersList(any(), any(), any()) } returns expectedResponse
 
 		val actualResponse = repository.getCharactersList(1, null)
 
@@ -74,7 +74,7 @@ class RickAndMortyRepositoryImplTest {
 	fun `getCharactersList returns empty response when service call fails`() = runTest {
 		val expectedResponse = Response<Character>(0, 0, null, null, emptyList())
 
-		coEvery { service.getCharactersList(any(), any()) } throws Exception()
+		coEvery { service.getCharactersList(any(), any(), any()) } throws Exception()
 
 		val actualResponse = repository.getCharactersList(1, null)
 
