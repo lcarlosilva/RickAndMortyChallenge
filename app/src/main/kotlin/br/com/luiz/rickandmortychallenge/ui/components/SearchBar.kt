@@ -31,6 +31,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import br.com.luiz.commons.utils.extensions.emptyString
 import br.com.luiz.rickandmortychallenge.R
+import br.com.luiz.rickandmortychallenge.ui.model.CharacterStatusUiData
+import br.com.luiz.rickandmortychallenge.ui.model.CharacterStatusUiData.StatusFilter.ALIVE
+import br.com.luiz.rickandmortychallenge.ui.model.CharacterStatusUiData.StatusFilter.DEAD
+import br.com.luiz.rickandmortychallenge.ui.model.CharacterStatusUiData.StatusFilter.UNKNOWN
 
 @Composable
 fun SearchBar(
@@ -38,7 +42,7 @@ fun SearchBar(
 	placeholder: String,
 	navigateUp: () -> Unit,
 	onValueChange: (String) -> Unit,
-	onValueSelected: (CharacterStatusData) -> Unit
+	onValueSelected: (String) -> Unit
 ) {
 	val focusManager = LocalFocusManager.current
 	val requester = remember { FocusRequester() }
@@ -98,9 +102,9 @@ fun SearchBar(
 		)
 		Filter(
 			listOf(
-				CharacterStatusData(status = CharacterStatusData.StatusFilter.ALIVE),
-				CharacterStatusData(status = CharacterStatusData.StatusFilter.DEAD),
-				CharacterStatusData(status = CharacterStatusData.StatusFilter.UNKNOWN)
+				CharacterStatusUiData(status = ALIVE),
+				CharacterStatusUiData(status = DEAD),
+				CharacterStatusUiData(status = UNKNOWN)
 			),
 			onStatusSelected = { characterStatusData -> onValueSelected(characterStatusData) }
 		)
