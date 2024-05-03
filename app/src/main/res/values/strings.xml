@@ -15,4 +15,6 @@
     <string name="msg_error_character_not_found">Character not Found</string>
     <string name="msg_info_try_again">Try Again</string>
     <string name="txt_placeholder_search_characters">Search Characters</string>
+    <string name="lbl_content_description_search">Search</string>
+    <string name="lbl_content_description_icon_check">Check</string>
 </resources>

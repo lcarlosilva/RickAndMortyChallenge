@@ -26,7 +26,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import br.com.luiz.rickandmortychallenge.R
 import br.com.luiz.rickandmortychallenge.ui.model.CharacterStatusUiData
 import br.com.luiz.rickandmortychallenge.ui.theme.Purple40
 import br.com.luiz.rickandmortychallenge.ui.theme.PurpleGrey80
@@ -38,7 +40,7 @@ fun FilterStatus(list: List<CharacterStatusUiData>, onStatusSelected: (String) -
 	LazyRow(
 		modifier = Modifier
 			.fillMaxWidth()
-			.padding(horizontal = 30.dp, vertical = 18.dp),
+			.padding(horizontal = 30.dp, vertical = 10.dp),
 		horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
 		contentPadding = PaddingValues(horizontal = 8.dp)
 	) {
@@ -67,21 +69,22 @@ fun Item(
 
 	Box(modifier = Modifier
 		.padding(10.dp)
-		.height(35.dp)
+		.height(38.dp)
+		.fillMaxWidth()
 		.clip(CircleShape)
 		.background(color = backgroundColor)
 		.clickable {
 			onItemSelected(title)
 		}) {
 		Row(
-			modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 5.dp),
+			modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 6.dp),
 			verticalAlignment = Alignment.CenterVertically,
 			horizontalArrangement = Arrangement.spacedBy(5.dp)
 		) {
 			AnimatedVisibility(visible = isSelected) {
 				Icon(
 					imageVector = Icons.Filled.Check,
-					contentDescription = "Check",
+					contentDescription = stringResource(R.string.lbl_content_description_icon_check),
 					tint = Color.White
 				)
 			}
