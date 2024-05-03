@@ -33,7 +33,7 @@ import br.com.luiz.rickandmortychallenge.ui.theme.PurpleGrey80
 
 
 @Composable
-fun Filter(list: List<CharacterStatusUiData>, onStatusSelected: (String) -> Unit) {
+fun FilterStatus(list: List<CharacterStatusUiData>, onStatusSelected: (String) -> Unit) {
 	var selected by remember { mutableStateOf("") }
 	LazyRow(
 		modifier = Modifier

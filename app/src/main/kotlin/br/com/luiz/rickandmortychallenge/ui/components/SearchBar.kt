@@ -100,7 +100,7 @@ fun SearchBar(
 			thickness = 1.dp,
 			color = Color.DarkGray
 		)
-		Filter(
+		FilterStatus(
 			listOf(
 				CharacterStatusUiData(status = ALIVE),
 				CharacterStatusUiData(status = DEAD),
