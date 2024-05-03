@@ -16,7 +16,7 @@ import java.net.URLEncoder
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CharactersListColumn(
+fun CharactersList(
 	modifier: Modifier = Modifier,
 	items: LazyPagingItems<List<Character>>,
 	listState: LazyListState = rememberLazyListState(),

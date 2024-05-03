@@ -11,7 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.luiz.commons.utils.extensions.emptyString
 import br.com.luiz.rickandmortychallenge.R
-import br.com.luiz.rickandmortychallenge.ui.components.CharactersListColumn
+import br.com.luiz.rickandmortychallenge.ui.components.CharactersList
 import br.com.luiz.rickandmortychallenge.ui.components.SearchBar
 import br.com.luiz.rickandmortychallenge.ui.viewmodel.FilterCharacterViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -46,7 +46,7 @@ fun filterCharacterScreen(navController: NavHostController, navigateBack: () -> 
 		}
 	) { paddingValues ->
 		characters?.let { searchCharacters ->
-			CharactersListColumn(
+			CharactersList(
 				modifier = Modifier.padding(paddingValues),
 				items = searchCharacters,
 				navController = navController
